@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 4), () {
       if (mounted) {
         Navigator.pushReplacementNamed(context, '/login');
       }
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
         );
       },
       child: Image.network(
-        'https://sdmntprwestus2.oaiusercontent.com/files/00000000-17e0-61f8-b1cd-0c4db48e54b5/raw?se=2025-07-24T11%3A17%3A02Z&sp=r&sv=2024-08-04&sr=b&scid=65983fd1-62e6-5e1e-9661-c97c37fcf732&skoid=c156db82-7a33-468f-9cdd-06af263ceec8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-23T20%3A08%3A48Z&ske=2025-07-24T20%3A08%3A48Z&sks=b&skv=2024-08-04&sig=BSaI4qlYe0XFaQQY8qd4%2B6Soul4RdZOQx9%2BE8q%2B5ch0%3D',
+        'https://sdmntprwestus2.oaiusercontent.com/files/00000000-17e0-61f8-b1cd-0c4db48e54b5/raw?se=2025-07-25T10%3A20%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=68c1f0ce-a0cb-5c2f-bfb0-6292c1ab7202&skoid=04233560-0ad7-493e-8bf0-1347c317d021&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-24T22%3A18%3A47Z&ske=2025-07-25T22%3A18%3A47Z&sks=b&skv=2024-08-04&sig=dwtzUANuT0MxAY28UG1fMskH0BkCaKNgqHut1smEFYs%3D',
         height: 150,
         width: 150,
       ),
