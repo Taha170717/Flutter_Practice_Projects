@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
               _imagewidget(),
               _loginform(),
               _loginButton(),
+              _registerpage()
             ],
           )),
         ),
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _imagewidget() {
     return Image.network(
-      'https://sdmntprwestus2.oaiusercontent.com/files/00000000-17e0-61f8-b1cd-0c4db48e54b5/raw?se=2025-07-25T10%3A20%3A55Z&sp=r&sv=2024-08-04&sr=b&scid=68c1f0ce-a0cb-5c2f-bfb0-6292c1ab7202&skoid=04233560-0ad7-493e-8bf0-1347c317d021&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-24T22%3A18%3A47Z&ske=2025-07-25T22%3A18%3A47Z&sks=b&skv=2024-08-04&sig=dwtzUANuT0MxAY28UG1fMskH0BkCaKNgqHut1smEFYs%3D',
+      'https://sdmntprwestus2.oaiusercontent.com/files/00000000-17e0-61f8-b1cd-0c4db48e54b5/raw?se=2025-07-25T12%3A47%3A08Z&sp=r&sv=2024-08-04&sr=b&scid=c80caea3-29f6-5e93-a42a-a0b2fbb57313&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-25T10%3A56%3A52Z&ske=2025-07-26T10%3A56%3A52Z&sks=b&skv=2024-08-04&sig=1jV9GhCBDHvL9Gq4CuOIm4z5jrbTYVVakC7Nr09s78Q%3D',
       height: 150,
       width: 150,
     );
@@ -85,10 +86,13 @@ class _LoginPageState extends State<LoginPage> {
             _email = value;
           });
         },
-        validator: (_value) =>
-            _value!.length>6 ?null : "Please enter a password Greater than 6 characters"
+        validator: (_value) {
+          bool _result = _value!.contains(RegExp(
+              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"));
+          return _result ? null :"Please enter Valid Email";
 
-    );
+        });
+
   }
 
   Widget _passwordFeild() {
@@ -115,20 +119,16 @@ class _LoginPageState extends State<LoginPage> {
             _password = value;
           });
         },
-        validator: (_value) {
-          bool _result = _value!.contains(RegExp(
-              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"));
-          _result ? null : "Please enter a Password";
+        validator: (_value) =>
+        _value!.length>6 ?null : "Please enter a password Greater than 6 characters"
 
-        });
+    );
   }
 
 
   Widget _loginButton() {
     return MaterialButton(
-      onPressed: () {
-        // Add your onPressed logic here
-      },
+      onPressed: _loginUser,
       height: _height! * 0.07,
       minWidth: _width! * 0.4,
       shape: RoundedRectangleBorder(
@@ -149,5 +149,30 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+  Widget _registerpage(){
+    return GestureDetector(
+      onTap: ()=> {
+        Navigator.pushNamed(context, '/register')
+      },
+      child: Text(
+        "Don't have an account? Register",
+        style: TextStyle(
+          color: Colors.purple,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+  void _loginUser(){
+    if (_loginformKey.currentState!.validate()){
+      _loginformKey.currentState!.save();
+      // Here you can add the logic to handle the login with _email and _password
+      print("Email: $_email, Password: $_password");
+      // Navigate to the next page or perform login action
+    } else {
+      print("Form is not valid");
+    }
   }
 }
