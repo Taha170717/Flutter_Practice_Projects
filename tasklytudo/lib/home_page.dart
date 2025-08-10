@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.red,
         toolbarHeight: _devheight * 0.1,
         title: Text(
           'Taskly!',
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           subtitle: Text(task.timestamp.toString()),
           trailing: Icon(
             task.done? Icons.check_box_outlined: Icons.check_box_outline_blank,
-            color: Colors.orange,
+            color: Colors.red,
           ),
           onTap: (){
 
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _addtaskButton(){
     return FloatingActionButton(onPressed: _displaytaskPopUp,
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.red,
     child: Icon(Icons.add,color: Colors.white,),
     );
   }
